@@ -1,0 +1,61 @@
+<div *ngIf="isAutoUpload" class="row fileupload-buttonbar">
+    <div class="col-sm-12 m--margin-15">
+        <div class="text-left">
+          <strong style=""><i style="font-size: 65px; text-align: center;" class="fa fa-upload"></i></strong> <br> <br>
+          <input class="btn btn-warning form-control" type="file" ng2FileSelect [uploader]="uploader" name="files">
+        </div>
+        <div class="m-form__help">
+            Upload will begin when you select a file.
+            <span *ngIf="uploadCount > 0">So far <span class="badge badge-success"> {{ uploadCount }} </span> file uploaded.</span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isMultipleUpload" class="row fileupload-buttonbar margin-bottom-20">
+    <div class="col-sm-12">
+        <span class="btn green fileinput-button">
+                <i class="fa fa-upload"></i>
+                <span> Add files... </span>
+        <input type="file" name="files[]" ng2FileSelect [uploader]="uploader" multiple="">
+        </span>
+    </div>
+</div>
+
+<div *ngIf="isMultipleUpload " class="row margin-bottom-20">
+    <div *ngIf="uploader.queue.length > 0" class="col-sm-12 margin-bottom-20">
+        <div class="m-portlet">
+          <div class="m-portlet__body">
+              <table role="presentation" class="table table-inverse">
+                  <tbody class="files">
+                      <tr *ngFor="let item of uploader.queue" [ngClass]="fileUploadStatusClass(item)">
+                          <td>
+                              {{ item.file.name }}
+                          </td>
+                          <td>
+                              {{ sizeInKB(item.file.size) }} KB
+                          </td>
+                          <td>
+                              <i [ngClass]="fileUploadState(item)"></i>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="uploader.queue.length > 0" class="col-sm-12">
+        <div class="btn-group">
+            <button (click)="uploadAll()" class="btn m-btn--square  btn-accent">Upload</button>
+            <button (click)="clearQueue()" class="btn m-btn--square  btn-accent">Reset</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div *ngIf="uploader && uploader.isUploading" class="col-sm-12 margin-bottom-20">
+        <div class="progress" style>
+            <div class="progress-bar progress-bar-success" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+        </div>
+        <span class="help help-block font-red">uploading {{ uploading.file.name }} ...</span>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div *ngIf="isHorizontalLayout">
+
+  <div class="row" [ngClass]="control.formGroup" [formGroup]="form" style="margin-bottom: 15px; padding-bottom: 15px !important;" >
+
+      <!-- <div class="form-control form-control-static" [innerHtml]="control.label"></div> -->
+      <input class="form-control" [formControlName]="control.key" type="hidden" />
+
+      <label class="col-lg-3 col-form-label" [attr.for]="control.name" [innerHtml]="control.label"></label>
+
+      <div id="{{ control.name }}" class="col-lg-9">
+
+        <!--
+        <div class="col-sm-3">
+          <label style="float: right; color: #888;" [innerHtml]="control.label"></label>
+        </div>
+        -->
+          <div class="row">
+
+              <div class="col-sm-8">
+
+
+                      <div class="image-input image-input-outline"
+                           id="kt_profile_avatar"
+                           [class.image-input-empty]="thumbUrl()"
+                           [style.backgroundImage]="'url(./assets/media/users/blank.png)'"
+                      >
+                          <div class="image-input-wrapper" [style.backgroundImage]="getPic()"></div>
+                          <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                 data-action="change"
+                                 data-toggle="tooltip"
+                                 title=""
+                                 data-original-title="Change avatar"
+                          >
+                              <i class="fa fa-pen icon-sm text-muted"></i>
+                              <input type="file" ng2FileSelect [uploader]="uploader" name="profile_avatar" accept=".png, .jpg, .jpeg"  />
+                              <input type="hidden" name="profile_avatar_remove" [formControlName]="control.key" />
+                          </label>
+                          <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        data-action="cancel" data-toggle="tooltip" title="" data-original-title="Cancel avatar">
+                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                          </span>
+                          <span *ngIf="thumbUrl()"
+                                        class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                        (click)="deletePic()"
+                                        data-action="remove" data-toggle="tooltip" title="" data-original-title="Remove avatar">
+                            <i class="ki ki-bold-close icon-xs text-muted"></i>
+                          </span>
+                      </div>
+
+
+<!--                  <label class="custom-file">-->
+<!--                      <input type="file" id="file2" ng2FileSelect [uploader]="uploader" class="custom-file-input">-->
+<!--                      <span class="custom-file-control"></span>-->
+<!--                    </label>-->
+
+                    <!--
+                <input class="btn btn-sm btn-primary" type="file" ng2FileSelect [uploader]="uploader" /><br>
+                 <button (click)="uploader.uploadAll()" class="btn btn-sm green">Upload</button>
+                <button (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length" class="btn btn-sm red">Remove</button>
+                  -->
+              </div>
+
+              <div class="col-sm-4">
+                  <div *ngIf="control.value" class="m-widget5__pic">
+                      <a [href]="control.value" target="_blank" class="">
+                          <img [src]="thumbUrl()" class="m-widget7__img" style="height: auto; width: 90px; display: block;">
+                      </a>
+                    <br>
+                    <span (click)="detachValue()" class="m-badge m-badge--danger m-badge--wide m-badge--rounded pointer">Detach</span>
+                  </div>
+                  <!-- <span class="m-form__help">{{ fileItemUrl() }}</span> -->
+              </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>

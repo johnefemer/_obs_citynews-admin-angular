@@ -1,0 +1,127 @@
+<!-- BEGIN BORDERED TABLE PORTLET-->
+<div *ngIf="!hasError && hasTable" id="table-{{ table }}" class="card card-custom example example-compact gutter-b">
+
+      <div class="card-header">
+
+          <div class="card-title">
+              <h3 class="card-label">
+                  {{ name || 'Browser' }}
+              </h3>
+          </div>
+
+          <div *ngIf="browser && browser.tools && browser.tools.length" class="card-toolbar">
+
+              <div class="example-tools justify-content-center">
+                  <span *ngFor="let action of browser.tools" class="m-nav__item">
+                      <a (click)="triggerTool(action)" style="cursor: pointer;" class="m-nav__link pl-2">
+<!--                          <i *ngIf="action.icon" class="m-nav__link-icon {{ action.icon }}"></i>-->
+                          <mat-icon style="font-size: 30px;" *ngIf="action.icon">{{ action.icon }}</mat-icon>
+                          <span *ngIf="!action.icon" class="m-nav__link-text">
+                            {{ action.label }}
+                          </span>
+                      </a>
+                  </span>
+              </div>
+
+
+<!--            <ul class="m-portlet__nav">-->
+<!--                <li class="m-portlet__nav-item m-dropdown m-dropdown&#45;&#45;inline m-dropdown&#45;&#45;arrow m-dropdown&#45;&#45;align-right m-dropdown&#45;&#45;align-push" data-dropdown-toggle="hover" aria-expanded="true">-->
+<!--                    <a class="m-portlet__nav-link m-portlet__nav-link&#45;&#45;icon m-portlet__nav-link&#45;&#45;icon-xl m-dropdown__toggle">-->
+<!--                      <i class="la la-ellipsis-h m&#45;&#45;font-brand"></i>-->
+<!--                    </a>-->
+<!--                    <div class="m-dropdown__wrapper">-->
+<!--                      <span class="m-dropdown__arrow m-dropdown__arrow&#45;&#45;right m-dropdown__arrow&#45;&#45;adjust"></span>-->
+<!--                      <div class="m-dropdown__inner">-->
+<!--                        <div class="m-dropdown__body">-->
+<!--                          <div class="m-dropdown__content">-->
+<!--                            <ul class="m-nav">-->
+
+<!--                              <li *ngFor="let action of browser.tools" class="m-nav__item">-->
+<!--                                <a (click)="triggerTool(action)" style="cursor: pointer;" class="m-nav__link">-->
+<!--                                  <i *ngIf="action.icon" class="m-nav__link-icon {{ action.icon }}"></i>-->
+<!--                                  <span class="m-nav__link-text">-->
+<!--                                    {{ action.label }}-->
+<!--                                  </span>-->
+<!--                                </a>-->
+<!--                              </li>-->
+
+<!--                            </ul>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </li>-->
+<!--            </ul>-->
+          </div>
+
+      </div> <!-- end HEAD -->
+
+
+
+
+    <div class="card-body">
+
+
+        <div class="m-section__content mb-5">
+            <table *ngIf="browser" class="table m-table m-table--head-bg-brand table-bordered table-responsive">
+                <thead>
+                <tr class="uppercase">
+                    <th *ngFor="let column of browser.columns" [innerHtml]="column.label"></th>
+                    <th *ngIf="browser.actions"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let row of browser.data">
+
+                    <!-- use keepHtml pipe to allow unsanitized html -->
+                    <td
+                            *ngFor="let column of browser.columns"
+                            [class]="column.class ? column.class : ''"
+                            [innerHtml]="row[column.name] | humanizeWith: column.params?.pipe ">
+                    </td>
+
+                    <td *ngIf="browser.actions">
+                        <a *ngFor="let action of browser.actions" style="cursor: pointer;" title="{{ action.label }}" (click)="doAction($event, action, row)" [class]="action.class || ''" class="btn m-btn m-btn--icon btn-sm m-btn--icon-only">
+<!--                            <i class="{{ action.icon || 'la la-edit' }}"></i>-->
+                            <mat-icon>{{ action.icon }}</mat-icon>
+                        </a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+      <app-browser-pagination [options]="{ name: name, summary: true }" [browser]="browser" (page)="goToPage($event)" ></app-browser-pagination>
+
+      <!--
+      <div *ngIf="browser && browser.pageChunks" class="m-section">
+        <div class="m-section__content">
+            <ul class="pagination">
+                <li *ngFor="let page of browser.pageChunks" [ngClass]="{ active: isCurrentPage(page) }">
+                    <a (click)="goToPage(page)"> <span class="m-badge m-badge--metal">{{ page }}</span></a>
+                </li>
+            </ul>
+            <hr>
+            <span class="help-block" [innerHtml]="paginationSummary"></span>
+        </div>
+      </div>
+      ->
+
+
+
+    </div>
+
+</div>
+<!-- END BORDERED TABLE PORTLET-->
+
+
+<div *ngIf="hasError" class="row">
+    <div class="col-sm-12">
+        <div class="alert alert-danger">
+            <h3>{{ errorMsg || 'Something Went Wrong!' }}</h3>
+        </div>
+    </div>
+</div>
+<!-- form error -->

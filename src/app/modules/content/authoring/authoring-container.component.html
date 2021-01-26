@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="float-left">
+            <button color="primary" mat-raised-button [matMenuTriggerFor]="menu">Create New Content</button>
+            <mat-menu #menu="matMenu">
+                <button (click)="onCreateContent(contentType)" *ngFor="let contentType of contentTypes$ | async" mat-menu-item>{{ contentType.name }}</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+</div>
+
+<div *ngIf="!!activeContentType" class="row mt-4 mb-4">
+    <div class="col-sm-8">
+
+        <app-content-editor-generic [contentType]="activeContentType" ></app-content-editor-generic>
+
+    </div>
+</div>

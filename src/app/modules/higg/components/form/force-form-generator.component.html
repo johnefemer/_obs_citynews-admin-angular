@@ -1,0 +1,128 @@
+<div *ngIf="isActive" class="row force-form-container">
+  <div class="{{ options.colWidth ? 'col-sm-' + options.colWidth : 'col-sm-12' }}">
+
+    <div class="card card-custom example example-compact gutter-b ng-star-inserted" [id]="formId">
+
+      <div class="card-header">
+
+        <div class="card-title">
+          <div class="m-portlet__head-title">
+<!--            <span class="m-portlet__head-icon m&#45;&#45;hide"><i [class]="icon"></i></span>-->
+            <h3 class="card-label">{{ title || 'Editor' }}</h3>
+            <span *ngIf="modal" data-dismiss="modal" class="m-portlet__head-icon"><i class="la la-close"></i></span>
+          </div>
+          <!-- end title -->
+        </div>
+
+        <div *ngIf="manifest.tools && manifest.tools.length > 0" class="card-toolbar">
+
+          <ul *ngIf="manifest.tools && manifest.tools.length < 3" class="m-portlet__nav">
+            <li *ngFor="let action of manifest.tools" class="m-portlet__nav-item">
+                      <a (click)="clickAction(action)" title="{{ action['label'] }}" class="m-portlet__nav-link m-portlet__nav-link--icon">
+                        <i *ngIf="action['icon']" class="{{ action['icon'] }}"></i>
+                      </a>
+                    </li>
+          </ul>
+
+          <ul *ngIf="manifest.tools && manifest.tools.length > 2" class="m-portlet__nav">
+            <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" data-dropdown-toggle="hover">
+
+                        <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-dropdown__toggle"><i class="la la-ellipsis-h"></i></a>
+                        <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                            <div class="m-dropdown__inner">
+                              <div class="m-dropdown__body">
+                                <div class="m-dropdown__content">
+                                  <ul class="m-nav">
+                                      <li class="m-nav__section m-nav__section--first">
+                                        <span class="m-nav__section-text">
+                                          Quick Actions
+                                        </span>
+                                      </li>
+                                      <li *ngFor="let action of manifest.tools" class="m-nav__item">
+                                        <a (click)="clickAction(action)" title="{{ action['label'] }}" class="m-nav__link">
+                                          <i *ngIf="action['icon']" class="{{ action['icon'] }}"></i>
+                                          <span class="m-nav__link-text">
+                                            {{ action['label'] }}
+                                          </span>
+                                        </a>
+                                      </li>
+                                  </ul>
+                                </div>
+                             </div>
+                            </div>
+                        </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <form class="m-form" *ngIf="isActive" [formGroup]="dynamicForm" novalidate>
+
+        <div class="m-portlet__body">
+
+          <div id="dynamic_form_alerts"></div>
+
+          <!-- <div class="m-form__section m-form__section--first"> -->
+
+          <div *ngFor="let control of controls" class="editor-form-control {{ this.control.name }}" [ngClass]="control.col">
+
+            <force-text-editor *ngIf="!isHorizontal && control.isText()" [control]="control" [form]="dynamicForm"></force-text-editor>
+            <input-text-editor *ngIf="isHorizontal && control.isText()" [control]="control" [form]="dynamicForm"></input-text-editor>
+
+            <dropdown-editor *ngIf="control.isDropdown()" [control]="control" [form]="dynamicForm" [layout]="layout"></dropdown-editor>
+            <fileinput-editor *ngIf="control.isFileInput()" [control]="control" [form]="dynamicForm" [layout]="layout"></fileinput-editor>
+
+            <switch-editor *ngIf="control.isSwitch()" [control]="control" [form]="dynamicForm" [layout]="layout"></switch-editor>
+            <daterange-editor *ngIf="control.isDateRange()" [control]="control" [form]="dynamicForm" [layout]="layout"></daterange-editor>
+            <tagsinput-editor *ngIf="control.isTagsinput()" [control]="control" [form]="dynamicForm" [layout]="layout"></tagsinput-editor>
+            <app-input-lookup-editor *ngIf="control.isLookUp()" [control]="control" [form]="dynamicForm" [layout]="layout"></app-input-lookup-editor>
+
+          </div>
+
+          <!-- </div> -->
+
+          <div *ngIf="options.showActions" class="m-portlet__foot m-portlet__foot--fit">
+            <div class="m-form__actions">
+              <div class="row">
+                <div class="col-sm-12">
+                  <force-inline-alert [alert]="forceFormAlert"></force-inline-alert>
+                </div>
+                <div class="col-sm-12">
+                  <div class="btn-group m-btn-group float-right">
+                    <button *ngFor="let action of manifest.actions" class="btn btn-primary action" [ngClass]="action.class" [disabled]="!isValid" (click)="clickAction(action);" [type]="action.action">
+                      <i *ngIf="action.icon" [class]="action.icon"></i>
+                      {{ action.label }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- form action bar -->
+
+
+        </div>
+
+      </form>
+      <!-- end form body -->
+
+    </div>
+    <!-- end card body -->
+
+  </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="errorMsg" class="row force-form-container">
+  <div class="col-sm-{{ options.colWidth }}">
+    <div class="alert alert-danger">
+      <h3>{{ errorMsg || 'Something Went Wrong!' }}</h3>
+    </div>
+  </div>
+</div>
+<!-- form error -->

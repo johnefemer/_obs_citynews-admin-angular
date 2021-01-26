@@ -1,0 +1,86 @@
+
+<div *ngIf="!isHorizontalLayout" [class]="control.formGroup" style_obsolete="margin-bottom: 15px; padding-bottom: 15px !important;" [formGroup]="form">
+
+    <!-- icon and addon layout -->
+    <div *ngIf="!control.isButtonLayout" [class]="control.inputGroup">
+
+        <label *ngIf="!isBsSelect" [attr.for]="control.key">
+            {{ control.label }}<span *ngIf="control.validators && control.validators.required"> * </span>
+        </label>
+
+        <!-- <span *ngIf="!!control.leftAddon" class="input-group-addon" [innerHtml]="control.addonContent(true)"></span> -->
+
+        <select *ngIf="!isOptGroup" [ngClass]="fromControlClass()" ngDefaultControl [class]="control.formControl" [formControlName]="control.key" [ngClass]="{ 'edited': true }" [attr.multiple]="isMultiple" [id]="control.name">
+
+                <option     *ngFor="let opt of control.options"
+                            [attr.data-icon]="opt.icon"
+                            [attr.data-subtext]="opt.subtext"
+                            [attr.selected]="opt.selected"
+                            [innerHtml]="opt.label"
+                            [value]="opt.value"></option>
+
+        </select>
+
+        <select *ngIf="isOptGroup" [ngClass]="fromControlClass()" [class]="control.formControl" [formControlName]="control.key" [ngClass]="{ 'edited': true }" [attr.multiple]="isMultiple" [id]="control.name">
+
+                <optgroup *ngFor="let group of control.options" [label]="group.label" >
+                    <option     *ngFor="let opt of group.options"
+                                [attr.data-icon]="opt.icon"
+                                [attr.data-subtext]="opt.subtext"
+                                [attr.selected]="opt.selected"
+                                [innerHtml]="opt.label"
+                                [value]="opt.value"></option>
+                </optgroup>
+
+        </select>
+
+
+        <span *ngIf="!!control.help" class="m-form__help">{{ control.help }}</span>
+        <!-- <span class="help-block" [innerHtml]="editor.value"></span>
+        <span *ngIf="!!control.rightAddon" class="input-group-addon" [innerHtml]="control.addonContent(false)"></span>  -->
+
+    </div>
+    <!-- end icon and addon layout -->
+
+</div>
+<!-- end formGroup -->
+
+
+
+
+<div *ngIf="isHorizontalLayout" [class]="control.formGroup" style="margin-bottom: 15px; padding-bottom: 15px !important;" [formGroup]="form">
+
+    <label class="col-form-label col-lg-3 col-sm-12" [attr.for]="control.key">
+         {{ control.label }}   <span *ngIf="control.validators && control.validators.required"> * </span>
+    </label>
+
+    <div class="col-lg-9 col-md-9 col-sm-12">
+
+        <select *ngIf="!isOptGroup" [ngClass]="fromControlClass()" ngDefaultControl [class]="control.formControl" [formControlName]="control.key" [ngClass]="{ 'edited': true}" [attr.multiple]="isMultiple" [id]="control.name">
+
+                <!-- <option value=""></option> -->
+                <option     *ngFor="let opt of control.options"
+                            [attr.data-icon]="opt.icon"
+                            [attr.data-subtext]="opt.subtext"
+                            [attr.selected]="opt.selected"
+                            [innerHtml]="opt.label"
+                            [value]="opt.value"></option>
+
+        </select>
+
+        <select *ngIf="isOptGroup" [ngClass]="fromControlClass()" [class]="control.formControl" [formControlName]="control.key" [ngClass]="{ 'edited': true }" [attr.multiple]="isMultiple" [id]="control.name">
+
+                <optgroup *ngFor="let group of control.options" [label]="group.label" >
+                    <option     *ngFor="let opt of group.options"
+                                [attr.data-icon]="opt.icon"
+                                [attr.data-subtext]="opt.subtext"
+                                [attr.selected]="opt.selected"
+                                [innerHtml]="opt.label"
+                                [value]="opt.value"></option>
+                </optgroup>
+        </select>
+
+        <span [class.m--font-danger]="control.params.state == 'error'" class="m-form__help">{{ control.help || '' }}</span>
+    </div>
+
+</div>

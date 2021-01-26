@@ -1,0 +1,15 @@
+
+<div class="form-group m-form__group row" style="margin-bottom: 15px; padding-bottom: 15px !important;" [formGroup]="form">
+
+  <label *ngIf="control.label && control.label.length" class="col-form-label col-lg-3 col-sm-12" [attr.for]="control.key">
+    {{ control.label }}   <span *ngIf="control.validators && control.validators.required"> * </span>
+  </label>
+
+  <div [ngClass]="{ 'col-lg-9 col-md-9 col-sm-12': control.label && control.label.length, 'col-lg-9 col-md-12 col-sm-12': !control.label || !control.label.length  }">
+    <select style="min-height: 30px !important;" class="form-control m-select2" [class]="control.formControl" [formControlName]="control.key" [ngClass]="{ 'edited': true}" [attr.multiple]="isMultiple" [id]="control.name">
+      <option></option>
+    </select>
+    <span [class.m--font-danger]="control.params.state == 'error'" class="m-form__help">{{ control.help || '' }}</span>
+  </div>
+
+</div>

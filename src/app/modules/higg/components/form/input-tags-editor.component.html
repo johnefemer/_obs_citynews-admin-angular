@@ -1,0 +1,14 @@
+<div [ngClass]="control.formGroup" class="row" style_obsolete="margin-bottom: 15px; padding-bottom: 15px !important;" [formGroup]="form">
+
+    <label class="col-lg-3 col-form-label" [attr.for]="control.name" [innerHtml]="control.label"></label>
+
+    <div class="col-lg-9">
+
+        <input type="text" class="form-control m-input input-large" [id]="control.name" [formControlName]="control.key" [value]="control.value" data-role="tagsinput">
+
+        <span *ngIf="!!control.help" class="m-help__form" [innerHtml]="control.help"></span>
+
+    </div>
+
+</div>
+<!-- end formGroup -->

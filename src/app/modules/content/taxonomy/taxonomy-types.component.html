@@ -1,0 +1,17 @@
+<div class="row">
+
+  <div class="col-sm-6">
+
+    <force-table (action)="onAction($event)" [state]="browserState" [options]="browserOptions" name="Taxonomy Types" ></force-table>
+
+  </div>
+
+
+  <div class="col-sm-6">
+
+    <force-form (response)="onResponse($event)" (action)="onAction($event)" [path]="formPath" [title]="formTitle" [request]="formReq" ></force-form>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,98 @@
+<div class="todo-container">
+
+    <div class="row">
+
+        <div class="col-md-7">
+
+
+            <div class="m-portlet">
+              <div class="m-portlet__body">
+
+                <table *ngIf="files && files.data" class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <span class="m--font-primary">{{ files['count'] }} files found in {{ ownerObject['name'] }}</span> 
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    <tr *ngFor="let item of files.data" (click)="fileDetails(item)" class="pointer" >
+                      <td> 
+                        <span class="m--font-boldest">{{ item['detailsDisplayName'] }}</span> 
+                        <span *ngIf="item['public']" class="m-badge  m-badge--danger m-badge--wide">public</span>
+                        <span class="m-badge m-badge--brand m-badge--wide">{{ item['access'] }}</span>
+                        <br>
+                        <small>{{ item['detailsDescription'] }}</small> <br>
+                        <div style="margin-bottom: 5px; display: block;" class="btn-group">
+                            <a title="Make this file publicly available" (click)="makePublic(item)" class="btn btn-metal btn-sm"> <i class="la la-unlock-alt"></i> Unlock </a> 
+                            <a title="Make this file publicly available" (click)="deleteFile(item)" class="btn btn-metal btn-sm"> <i class="la la-close"></i> Delete </a>
+                            <a title="Download" target="_blank" [href]="item['detailsOriginalUrl']" class="btn btn-metal btn-sm"> <i class="la la-download"></i> Download </a>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="col-md-5">
+            <div class="row">
+                
+              <div class="col-lg-12">
+                    <force-file-upload #uploader (file)="onCompleteUpload($event)" (handler)="onUploaderInit($event)" [owner]="owner" [mode]="mode"></force-file-upload>
+                </div>
+
+                <div class="col-lg-12">
+
+                    <div *ngIf="file" class="row">
+                        <div class="col-lg-12">
+
+                            <div class="m-portlet">
+                              <div class="m-portlet__body">
+                                  <table class="table table-sm m-table m-table--head-bg-brand">
+                                      <tbody>
+                                          <tr>
+                                              <td>FileID</td>
+                                              <td>{{ file['id'] }}</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Name</td>
+                                              <td>{{ file['detailsDisplayName'] }}</td>
+                                          </tr>
+                                          <tr>
+                                              <td>File</td>
+                                              <td>{{ file['filename'] }}</td>
+                                          </tr>
+                                          <tr>
+                                              <td>Size</td>
+                                              <td>{{ file['filesize'] }}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="file['filetype'] == 'image'" class="col-lg-12">
+                            <img style="width: 100%;" [src]="file['detailsOriginalUrl']" />
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

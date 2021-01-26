@@ -1,0 +1,40 @@
+
+<div class="row">
+
+  <div class="col-sm-12 m--margin-bottom-25">
+
+    <div [formGroup]="taxonomySearchForm" class="row">
+      <div class="col-sm-2">
+        <div class="form-group">
+          <select formControlName="taxonomy_type" class="form-control" name="taxonomyTypeSelector" id="taxonomyTypeSelector">
+            <option value=""></option>
+            <option *ngFor="let taxoType of taxonomyTypes$ | async" [value]="taxoType.slug">{{ taxoType.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="form-group">
+          <input formControlName="name" type="text" placeholder="Search..." class="form-control"/>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+
+        <div class="btn btn-group">
+          <button (click)="toCategories()" class="btn btn-success">Browser</button>
+          <button routerLink="/content/taxonomy-types" class="btn btn-success">Taxonomy Types</button>
+          <button (click)="createNewTaxonomy()" class="btn btn-success">Create</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-12">
+
+    <force-table (action)="onAction($event)" name="Taxonomies" [options]="browserOptions" [state]="browserState" ></force-table>
+
+  </div>
+
+</div>

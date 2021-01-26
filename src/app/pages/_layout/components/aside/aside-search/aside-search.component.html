@@ -1,0 +1,238 @@
+<!--begin::Form-->
+<form class="p-2 p-lg-3">
+  <div class="d-flex">
+    <div class="input-icon h-40px">
+      <input
+        type="text"
+        class="form-control form-control-lg form-control-solid h-40px"
+        placeholder="Search..."
+        id="generalSearch"
+      />
+      <span>
+        <span
+          [inlineSVG]="'./assets/media/svg/icons/General/Search.svg'"
+          cacheSVG="true"
+          class="svg-icon svg-icon-lg"
+        ></span>
+      </span>
+    </div>
+
+    <div
+      class="dropdown"
+      data-toggle="tooltip"
+      title="Quick actions"
+      data-placement="left"
+      ngbDropdown
+      container="body"
+    >
+      <a
+        role="button"
+        class="btn btn-icon btn-default btn-hover-primary dropdown-toggle ml-2 h-40px w-40px flex-shrink-0"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        ngbDropdownToggle
+      >
+        <span
+          [inlineSVG]="'./assets/media/svg/icons/Code/Compiling.svg'"
+          cacheSVG="true"
+          class="svg-icon svg-icon-lg"
+        ></span>
+      </a>
+      <div
+        class="dropdown-menu dropdown-menu-md dropdown-menu-right"
+        ngbDropdownMenu
+      >
+        <app-dropdown-menu4></app-dropdown-menu4>
+      </div>
+    </div>
+  </div>
+</form>
+<!--end::Form-->
+
+<h3 class="p-2 p-lg-3 my-1 my-lg-3">Contents</h3>
+
+<!--begin::List-->
+<div class="list list-hover">
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/misc/008-infography.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">News</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >City News Boiler Room</a>
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/misc/010-vimeo.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">Videos</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >Featured Video Contents</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/logos/facebook-2.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">Social Content</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >City News Social Both</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/misc/004-retweet.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">Mingle</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >User populated content</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/logos/youtube-3.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">YouTube</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >YouTube Video Publishing</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/icons/Shopping/Wallet3.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">Authoring</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >Earn from Writing</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+
+  <!--begin::Item-->
+  <div class="list-item hoverable p-2 p-lg-3 mb-2">
+    <div class="d-flex align-items-center">
+      <!--begin::Symbol-->
+      <div class="symbol symbol-40 symbol-light mr-4">
+        <span class="symbol-label bg-hover-white">
+          <span
+            [inlineSVG]="'./assets/media/svg/misc/009-hot-air-balloon.svg'"
+            cacheSVG="true"
+            class="svg-icon h-50 align-self-center"
+          ></span>
+        </span>
+      </div>
+      <!--end::Symbol-->
+      <!--begin::Text-->
+      <div class="d-flex flex-column flex-grow-1 mr-2">
+        <span class="text-dark-75 font-size-h6 mb-0">Events</span>
+        <a href="#" class="text-muted text-hover-primary font-weight-bold"
+          >Public and private events</a
+        >
+      </div>
+      <!--begin::End-->
+    </div>
+  </div>
+  <!--end::Item-->
+</div>
+<!--end::List-->

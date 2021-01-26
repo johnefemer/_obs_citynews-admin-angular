@@ -1,0 +1,37 @@
+<div *ngIf="isHidden" [formGroup]="form">
+    <input type="hidden" [id]="control.name" [formControlName]="control.key" />
+</div>
+
+<div *ngIf="!isHidden" style_obsolete="margin-bottom: 15px; padding-bottom: 15px !important;" [class]="control.formGroup" [formGroup]="form">
+
+    <!-- icon and addon layout -->
+    <!-- <div *ngIf="!control.isButtonLayout" [class]="control.inputGroup"> -->
+
+        <!-- <span *ngIf="control.leftAddon" class="input-group-addon" [innerHtml]="control.addonContent(true)"></span> -->
+
+        <label *ngIf="!isHidden" [attr.for]="control.key" [innerHtml]="control.label"></label>
+
+        <input [type]="control.params.type || 'text'" *ngIf="!control.isReadonly && !isLargeText()" [id]="control.name" [value]="control.value" [placeholder]="control.placeholder" [formControlName]="control.key" [ngClass]="{ 'edited': control.edited }" [class]="control.formControl"/>
+
+        <textarea [id]="control.name" *ngIf="!control.isReadonly && isLargeText()" [placeholder]="control.placeholder" [formControlName]="control.key" [ngClass]="{ 'edited': control.edited }" [class]="control.formControl"></textarea>
+
+        <!-- <div *ngIf="control.isReadonly" [class]="control.formControl" [innerHtml]="control.value"></div> -->
+
+        <span *ngIf="!!help" class="m-form__help" [innerHtml]="help"></span>
+
+        <!-- <i *ngIf="!!control.icon" [class]="control.icon"></i> -->
+
+        <!-- <span *ngIf="control.rightAddon" class="input-group-addon" [innerHtml]="control.addonContent(false)"></span> -->
+
+    <!-- </div> -->
+    <!-- end icon and addon layout -->
+
+    <!-- button layout -->
+    <!--
+    <div *ngIf="control.isButtonLayout" [ngClass]="control.inputGroup">
+
+    </div> -->
+    <!-- end button layout -->
+
+</div>
+<!-- end formGroup -->
